@@ -1,0 +1,21 @@
+with dates as (
+	select trunc(sysdate) + level - 1 generated_date
+	from dual d
+	connect by level <= 7
+)
+select 
+	dates.generated_date,
+	ts.slot_name,
+	count(v.id) || ' / 30' as volunteers_count
+from dates
+join time_slots ts on 1 = 1
+left join volunteers v on 
+	trunc(v.the_date) = trunc(dates.generated_date)
+	and v.time_slot = ts.id
+group by 
+	dates.generated_date,
+	ts.slot_name,
+	ts.the_order
+order by 
+	dates.generated_date, 
+	ts.the_order
