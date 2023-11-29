@@ -1,0 +1,38 @@
+volunteer_types /auditcols
+	name /nn /vc1000
+	code /nn /vc100
+
+time_slots /auditcols
+	the_order /nn 
+	slot_name /vc255
+	description /vc4000
+	hour_start /num
+	hour_end /num
+
+languages /auditcols
+	code /vc5
+	name /vc255
+
+vlounteers /auditcols
+	the_date /nn
+	time_slot /num /nn /fk time_slots
+	first_name /vc255 /nn
+	last_name /vc255 /nn
+	email /vc255 /nn
+	phone_number /nn	
+	type /nn
+	languages /nn
+	comments
+	was_on_site /vc1 
+	entry_hour /vc50
+	exit_hour /vc50
+
+settings /auditcols
+	code /vc255
+	value /num
+	name /vc1000
+
+volunteers_time_slots_limits /auditcols
+    time_slot_id /num /fk time_slots
+	date_name /date
+	volunteers_limit /num 
